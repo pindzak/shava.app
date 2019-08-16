@@ -6,7 +6,7 @@
 
 	function init()
 	{
-		// hello
+		//new
 		// INIT
 		var centerCoords = [54.709653, 20.519702],
 			map = new ymaps.Map("map", {
