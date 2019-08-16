@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Title -->
+	<title>Map</title>
+
+	<!-- Required Meta Tags Always Come First -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<!-- Favicon -->
+	<!--	<link rel="shortcut icon" href="../../favicon.ico">-->
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+<main class="map-container row no-gutters h-100">
+	<div class="map-info col-12 col-md-3 d-flex flex-column shadow-lg justify-content-between">
+		<div class="map-info-result shadow-sm h-100">
+			<div class="text-center">
+				<button type="button" class="shava-button btn btn-success" id="addShava">Добавить шавуху
+				</button>
+			</div>
+			<h4 class="w-100 text-center">Результаты:</h4>
+			<ul class="map-info-result-results list-unstyled" id="resultResults"></ul>
+			<div class="map-info-result-summ" id="resultSumm"></div>
+		</div>
+		<div class="map-info-info d-none d-md-block">
+			<small>
+				<i>
+					<p>Кликаем по карте - расставляем участников.</p>
+					<p>Клик по метке - редактирование имени.</p>
+					<p>Большая зелёная кнопка добавляет точку, где&nbsp;хотим кушать.</p>
+					<p>Выбираем разные места, сравниваем расстояния.</p>
+					<p>??????</p>
+					<p>PROFIT!!</p>
+				</i>
+			</small>
+		</div>
+	</div>
+
+	<div class="map-map col-12 col-md-9 " id="map"></div>
+</main>
+
+<!-- JS Global Compulsory -->
+
+<!-- JS Customization -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=bfd21a41-ba64-49a3-a2bd-b7d139932aa5&lang=ru_RU"
+		type="text/javascript"></script>
+<script src="script.js"></script>
+</body>
+
+</html>

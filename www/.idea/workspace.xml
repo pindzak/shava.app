@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="159adcbb-e2a8-48aa-90cd-fb1f54c388dc" name="Default Changelist" comment="">
+      <change beforePath="D:/_rep/modules/rest/classes/general/rest.php" beforeDir="false" afterPath="D:/_rep/modules/rest/classes/general/rest.php" afterDir="false" />
+      <change beforePath="D:/_rep/modules/seo/admin/seo_search_yandex_direct_banner.php" beforeDir="false" afterPath="D:/_rep/modules/seo/admin/seo_search_yandex_direct_banner.php" afterDir="false" />
+      <change beforePath="D:/_rep/modules/seo/admin/seo_search_yandex_direct_banner_edit.php" beforeDir="false" afterPath="D:/_rep/modules/seo/admin/seo_search_yandex_direct_banner_edit.php" afterDir="false" />
+      <change beforePath="D:/_rep/modules/seo/admin/tab/seo_search_yandex_direct_list_link.php" beforeDir="false" afterPath="D:/_rep/modules/seo/admin/tab/seo_search_yandex_direct_list_link.php" afterDir="false" />
+      <change beforePath="D:/_rep/modules/seo/admin/tab/seo_search_yandex_direct_stat.php" beforeDir="false" afterPath="D:/_rep/modules/seo/admin/tab/seo_search_yandex_direct_stat.php" afterDir="false" />
+      <change beforePath="D:/_rep/modules/socialservices/classes/general/bitrixservice.php" beforeDir="false" afterPath="D:/_rep/modules/socialservices/classes/general/bitrixservice.php" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/shava_map" />
+  </component>
+  <component name="ProjectId" id="1PV5rcJ3eaTSuwIc2FD5t7w74aq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="159adcbb-e2a8-48aa-90cd-fb1f54c388dc" name="Default Changelist" comment="" />
+      <created>1565946622355</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565946622355</updated>
+      <workItem from="1565946623686" duration="887000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="hg4idea.settings">
+    <option name="RECENT_HG_ROOT_PATH" value="D:/_rep/modules" />
+  </component>
+</project>
