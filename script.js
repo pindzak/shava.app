@@ -72,17 +72,12 @@
 				contextMenu.style.top = e.get('pagePixels')[1] + 'px';
 
 				document.getElementsByTagName('body')[0].append(contextMenu);
-
-				// todo: save
-				// При нажатии на кнопку "Сохранить" изменяем свойства метки
-				// значениями, введенными в форме контекстного меню.
-				// $('#menu input[type="submit"]').click(function () {
-				// 	targetPeople.properties.set({
-				// 		iconContent: $('input[name="icon_text"]').val(),
-				// 	});
-				// 	// Удаляем контекстное меню.
-				// 	$('#menu').remove();
-				// });
+				contextMenuSave.addEventListener("click", function(){
+					targetPeople.properties.set({
+						iconCaption: contextMenuName.value,
+					});
+					contextMenu.remove();
+				});
 			}
 		}
 
@@ -201,9 +196,7 @@
 					wayPointIconImageOffset: [-5, -5],
 				}
 			);
-			// todo: remove old routes from map
-
-// Добавление маршрута на карту.
+			// todo: remove old routes from map -> need save routes
 			map.geoObjects.add(multiRoute);
 
 			// todo: distance
