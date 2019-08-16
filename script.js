@@ -49,7 +49,6 @@
 
 		function onPeopleClick(e)
 		{
-			var contextMenu = document.getElementById('contextMenu');
 			if (contextMenu)
 			{
 				contextMenu.remove();
@@ -63,9 +62,8 @@
 				contextMenu.style.background = 'white';
 				contextMenu.innerHTML =
 					'<div><i>Кто это?</i><br>'
-					+ '<input type="text" name="contextMenuName" value="' + targetPeople.properties.get('iconCaption')
-					+ '"></div><div align="center"><input type="submit" value="Сохранить" /></div>';
-
+					+ '<input id="contextMenuName" type="text" name="contextMenuName" value="' + targetPeople.properties.get('iconCaption')
+					+ '"></div><div align="center"><input id="contextMenuSave" type="submit" value="Сохранить" /></div>';
 				contextMenu.style.position = 'absolute';
 				contextMenu.style.padding = '15px';
 				contextMenu.style.left = e.get('pagePixels')[0] + 'px';
@@ -188,12 +186,12 @@
 					routeActiveStrokeWidth: 3,
 					routeStrokeStyle: 'dot',
 					routeStrokeWidth: 1,
-					pinIconLayout: "default#image",
-					pinIconColor: "#f00",
-					pinIconFillColor: "#0f0",
-					wayPointVisible: false,
-					wayPointIconImageSize: [10, 10],
-					wayPointIconImageOffset: [-5, -5],
+					// pinIconLayout: "default#image",
+					// pinIconColor: "#f00",
+					// pinIconFillColor: "#0f0",
+					// wayPointVisible: false,
+					// wayPointIconImageSize: [10, 10],
+					// wayPointIconImageOffset: [-5, -5],
 				}
 			);
 			// todo: remove old routes from map -> need save routes
