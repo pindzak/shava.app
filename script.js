@@ -13,10 +13,13 @@
 				center: centerCoords,
 				zoom: 12
 			}),
-			peoplePoints = [],
-			maxCoords = [],
-			minCoords = [],
+			peoples = [],
 			shava,
+			maxPeopleCoords = [],
+			minPeopleCoords = [],
+
+
+			// todo: name
 			routesSumm;
 
 		// events
@@ -32,7 +35,7 @@
 			map.geoObjects.add(point);
 
 			// save point
-			peoplePoints.push(point);
+			peoples.push({point: point});
 
 			// save min max coords
 			updateMinMax(coords);
@@ -108,35 +111,35 @@
 
 		function findShavaCoords()
 		{
-			if (maxCoords.length === 0 && minCoords.length === 0)
+			if (maxPeopleCoords.length === 0 && minPeopleCoords.length === 0)
 			{
 				return centerCoords;
 			}
 			else
 			{
 				return [
-					minCoords[0] + (maxCoords[0] - minCoords[0]) / 2,
-					minCoords[1] + (maxCoords[1] - minCoords[1]) / 2,
+					minPeopleCoords[0] + (maxPeopleCoords[0] - minPeopleCoords[0]) / 2,
+					minPeopleCoords[1] + (maxPeopleCoords[1] - minPeopleCoords[1]) / 2,
 				];
 			}
 		}
 
 		function updateMinMax(coords)
 		{
-			if (maxCoords.length === 0 && minCoords.length === 0)
+			if (maxPeopleCoords.length === 0 && minPeopleCoords.length === 0)
 			{
-				maxCoords = coords;
-				minCoords = coords;
+				maxPeopleCoords = coords;
+				minPeopleCoords = coords;
 			}
 			else
 			{
-				maxCoords = [
-					Math.max(maxCoords[0], coords[0]),
-					Math.max(maxCoords[1], coords[1]),
+				maxPeopleCoords = [
+					Math.max(maxPeopleCoords[0], coords[0]),
+					Math.max(maxPeopleCoords[1], coords[1]),
 				];
-				minCoords = [
-					Math.min(minCoords[0], coords[0]),
-					Math.min(minCoords[1], coords[1]),
+				minPeopleCoords = [
+					Math.min(minPeopleCoords[0], coords[0]),
+					Math.min(minPeopleCoords[1], coords[1]),
 				];
 			}
 		}
@@ -163,19 +166,47 @@
 			resultResults.innerHTML = '';
 			routesSumm = 0;
 
-			peoplePoints.forEach(function (point)
+			// todo: mark max and min route
+
+			debugger;
+			peoples.forEach(function (people)
 			{
+				var point = people.point;
 				var p = document.createElement('li');
 				p.innerHTML =
-					'От <i>' + point.properties.get('iconCaption') + '</i>'
-					+ ' до шавухи <b>' + point.geometry.getCoordinates() + 'км</b>';
+					'<i>' + point.properties.get('iconCaption') + '</i>'
+					+ ' протопает до шавухи <b>' + point.geometry.getCoordinates() + 'км</b>';
 				resultResults.append(p);
-			});
 
-			var multiRoute = new ymaps.multiRouter.MultiRoute({
+				// set routes
+				if(people.route)
+				{
+					map.geoObjects.remove(people.route);
+				}
+				people.route = createPeopleRoute(people);
+				map.geoObjects.add(people.route);
+			});
+			debugger;
+
+			// todo: remove old routes from map -> need save routes
+
+
+			// todo: distance
+			// var distance = multiRoute.getActiveRoute().properties.get("distance").text;
+			console.log("distance");
+			// todo: add route time
+			// todo: mark min and max route
+			// todo: save by URL params
+
+			resultSumm.innerHTML = 'Все вместе намотаем <b>' + routesSumm + 'км</b>';
+		}
+
+		function createPeopleRoute(people)
+		{
+			return new ymaps.multiRouter.MultiRoute({
 					// Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
 					referencePoints: [
-						peoplePoints[0].geometry.getCoordinates(),
+						people.point.geometry.getCoordinates(),
 						shava, // улица Льва Толстого.
 					],
 					params: {
@@ -194,17 +225,6 @@
 					// wayPointIconImageOffset: [-5, -5],
 				}
 			);
-			// todo: remove old routes from map -> need save routes
-			map.geoObjects.add(multiRoute);
-
-			// todo: distance
-			// var distance = multiRoute.getActiveRoute().properties.get("distance").text;
-			console.log("distance");
-			// todo: add route time
-			// todo: mark min and max route
-			// todo: save by URL params
-
-			resultSumm.innerHTML = 'Все вместе пройдём <b>' + routesSumm + 'км</b>';
 		}
 	}
 })();
