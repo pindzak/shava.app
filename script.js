@@ -9,7 +9,7 @@
 		//new
 		// INIT
 		var centerCoords = [54.709653, 20.519702],
-			map = new ymaps.Map("map", {
+			ymap = new ymaps.Map("map", {
 				center: centerCoords,
 				zoom: 12
 			}),
@@ -18,12 +18,11 @@
 			maxPeopleCoords = [],
 			minPeopleCoords = [],
 
-
 			// todo: name
-			routesSumm;
+			routesSum;
 
 		// events
-		map.events.add('click', onMapClick);
+		ymap.events.add('click', onMapClick);
 		addShava.addEventListener("click", onAddShavaClick);
 
 		function onMapClick(e)
@@ -32,7 +31,7 @@
 			// add point to map
 			var coords = e.get('coords');
 			var point = createPlacemark(coords);
-			map.geoObjects.add(point);
+			ymap.geoObjects.add(point);
 
 			// save point
 			peoples.push({point: point});
@@ -43,10 +42,7 @@
 			point.events.add('click', onPeopleClick);
 
 			// drag event for rematch routes
-			point.events.add('dragend', function ()
-			{
-				matchRouts();
-			});
+			point.events.add('dragend', matchRouts);
 			matchRouts();
 		}
 
@@ -98,7 +94,7 @@
 						draggable: true
 					}
 				);
-				map.geoObjects.add(shava);
+				ymap.geoObjects.add(shava);
 			}
 
 			// drag event
@@ -164,41 +160,41 @@
 			}
 
 			resultResults.innerHTML = '';
-			routesSumm = 0;
-
+			routesSum = 0;
 			// todo: mark max and min route
 
-			debugger;
 			peoples.forEach(function (people)
 			{
-				var point = people.point;
-				var p = document.createElement('li');
-				p.innerHTML =
-					'<i>' + point.properties.get('iconCaption') + '</i>'
-					+ ' протопает до шавухи <b>' + point.geometry.getCoordinates() + 'км</b>';
-				resultResults.append(p);
-
-				// set routes
+				// set route
 				if(people.route)
 				{
-					map.geoObjects.remove(people.route);
+					updatePeopleRoute(people);
 				}
-				people.route = createPeopleRoute(people);
-				map.geoObjects.add(people.route);
+				else
+				{
+					people.route = createPeopleRoute(people);
+					ymap.geoObjects.add(people.route);
+					people.route.model.events.add('requestsuccess', onRouteUpdated);
+				}
+
+				// create text
+				var p = document.createElement('li');
+				p.innerHTML =
+					'<i>' + people.point.properties.get('iconCaption') + '</i>'
+					+ ' протопает до шавухи <b>' + people.point.geometry.getCoordinates() + 'км</b>';
+				resultResults.append(p);
 			});
-			debugger;
 
 			// todo: remove old routes from map -> need save routes
 
 
 			// todo: distance
 			// var distance = multiRoute.getActiveRoute().properties.get("distance").text;
-			console.log("distance");
 			// todo: add route time
 			// todo: mark min and max route
 			// todo: save by URL params
 
-			resultSumm.innerHTML = 'Все вместе намотаем <b>' + routesSumm + 'км</b>';
+
 		}
 
 		function createPeopleRoute(people)
@@ -207,7 +203,7 @@
 					// Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
 					referencePoints: [
 						people.point.geometry.getCoordinates(),
-						shava, // улица Льва Толстого.
+						shava
 					],
 					params: {
 						routingMode: "pedestrian",
@@ -225,6 +221,24 @@
 					// wayPointIconImageOffset: [-5, -5],
 				}
 			);
+		}
+
+		function updatePeopleRoute(people)
+		{
+			people.route.model.setReferencePoints([
+				people.point.geometry.getCoordinates(),
+				shava.geometry.getCoordinates()
+			]);
+		}
+
+		function onRouteUpdated(e)
+		{
+			var targetRoutes =e.get('target').getRoutes();
+			if(targetRoutes.length > 0)
+			{
+				routesSum += targetRoutes[0].properties.get("distance").value;
+				resultSumm.innerHTML = 'Все вместе намотаем <b>' + routesSum/1000 + ' км</b>';
+			}
 		}
 	}
 })();
