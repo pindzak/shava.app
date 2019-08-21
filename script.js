@@ -180,13 +180,6 @@
 					// all updates may do only after succcess request
 					people.route.model.events.add('requestsuccess', onRouteUpdated);
 				}
-
-				// create text
-				var p = document.createElement('li');
-				p.innerHTML =
-					'<i>' + people.point.properties.get('iconCaption') + '</i>'
-					+ ' протопает до шавухи <b>' + people.point.geometry.getCoordinates() + 'км</b>';
-				resultResults.append(p);
 			});
 
 			// todo: remove old routes from map -> need save routes
@@ -240,8 +233,20 @@
 			var targetRoutes =e.get('target').getRoutes();
 			if(targetRoutes.length > 0)
 			{
-				routesSum += targetRoutes[0].properties.get("distance").value;
-				resultSumm.innerHTML = 'Все вместе намотаем <b>' + routesSum/1000 + ' км</b>';
+				var distance = targetRoutes[0].properties.get("distance").value;
+				resultSumm.innerHTML = 'Все вместе намотаем <b>' + (routesSum += distance)/1000 + ' км</b>';
+
+				// find current people
+				peoples.forEach(function(people){
+					if(people.route.model.getReferencePoints()[0] === e.get('target').getReferencePoints()[0])
+					{
+						var text = document.createElement('li');
+						text.innerHTML =
+							'<i>' + people.point.properties.get('iconCaption') + '</i>'
+							+ ' протопает до шавухи <b>' + distance/1000 + 'км</b>';
+						resultResults.append(text);
+					}
+				});
 			}
 		}
 	}
