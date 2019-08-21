@@ -37,9 +37,11 @@
 			peoples.push({point: point});
 
 			// save min max coords
-			updateMinMax(coords);
+			updateMinMaxPeoplesCoords(coords);
 
+			// todo: drag points
 			point.events.add('click', onPeopleClick);
+			point.events.add('dragend', function(){console.log("point drag");});
 
 			// drag event for rematch routes
 			point.events.add('dragend', matchRouts);
@@ -86,7 +88,7 @@
 				// todo: random icon
 				var coords = centerCoords;
 				shava = new ymaps.Placemark(
-					findShavaCoords(),
+					getDefaultShavaCoords(),
 					{
 						iconCaption: 'Шава!'
 					}, {
@@ -105,7 +107,7 @@
 			matchRouts();
 		}
 
-		function findShavaCoords()
+		function getDefaultShavaCoords()
 		{
 			if (maxPeopleCoords.length === 0 && minPeopleCoords.length === 0)
 			{
@@ -120,7 +122,7 @@
 			}
 		}
 
-		function updateMinMax(coords)
+		function updateMinMaxPeoplesCoords(coords)
 		{
 			if (maxPeopleCoords.length === 0 && minPeopleCoords.length === 0)
 			{
@@ -144,6 +146,7 @@
 		//styles = https://tech.yandex.ru/maps/jsapi/doc/2.1/ref/reference/option.presetStorage-docpage/
 		function createPlacemark(coords)
 		{
+			// todo: random styles
 			return new ymaps.Placemark(coords, {
 				iconCaption: 'Кто это?'
 			}, {
@@ -174,6 +177,7 @@
 				{
 					people.route = createPeopleRoute(people);
 					ymap.geoObjects.add(people.route);
+					// all updates may do only after succcess request
 					people.route.model.events.add('requestsuccess', onRouteUpdated);
 				}
 
