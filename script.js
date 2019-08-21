@@ -148,7 +148,7 @@
 		{
 			// todo: random styles
 			return new ymaps.Placemark(coords, {
-				iconCaption: 'Кто это?'
+				iconCaption: 'Кто это у нас тут?'
 			}, {
 				preset: 'islands#redIcon',
 				draggable: true
@@ -182,16 +182,9 @@
 				}
 			});
 
-			// todo: remove old routes from map -> need save routes
-
-
-			// todo: distance
-			// var distance = multiRoute.getActiveRoute().properties.get("distance").text;
 			// todo: add route time
 			// todo: mark min and max route
 			// todo: save by URL params
-
-
 		}
 
 		function createPeopleRoute(people)
