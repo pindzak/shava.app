@@ -30,22 +30,9 @@
 			// todo: if doublicate - just move. Now not work (click ryadom)
 			// add point to map
 			var coords = e.get('coords');
-			var point = createPlacemark(coords);
-			ymap.geoObjects.add(point);
-
-			// save point
-			peoples.push({point: point});
-
-			// save min max coords
-			updateMinMaxPeoplesCoords(coords);
-
-			// todo: drag points
-			point.events.add('click', onPeopleClick);
-			point.events.add('dragend', function(){console.log("point drag");});
-
-			// drag event for rematch routes
-			point.events.add('dragend', matchRouts);
-			matchRouts();
+			var caption = undefined;
+			// todo: caption from url params
+			addPeoplePoint(coords, caption);
 		}
 
 		function onPeopleClick(e)
@@ -107,6 +94,43 @@
 			matchRouts();
 		}
 
+		function addPeoplePoint(coords, caption)
+		{
+			// todo: caption
+			var point = createPeoplePoint(coords);
+			ymap.geoObjects.add(point);
+
+			// save point
+			peoples.push({point: point});
+
+			// save min max coords
+			updateMinMaxPeoplesCoords(coords);
+
+			// todo: drag points
+			point.events.add('click', onPeopleClick);
+			point.events.add('dragend', function(){console.log("point drag");});
+
+			// drag event for rematch routes
+			point.events.add('dragend', matchRouts);
+			matchRouts();
+		}
+		// todo: random styles
+		//styles = https://tech.yandex.ru/maps/jsapi/doc/2.1/ref/reference/option.presetStorage-docpage/
+		function createPeoplePoint(coords, caption)
+		{
+			if(!!caption)
+			{
+				caption = 'Кто это у нас тут?'
+			}
+			// todo: random styles
+			return new ymaps.Placemark(coords, {
+				iconCaption: caption
+			}, {
+				preset: 'islands#redIcon',
+				draggable: true
+			});
+		}
+
 		function getDefaultShavaCoords()
 		{
 			if (maxPeopleCoords.length === 0 && minPeopleCoords.length === 0)
@@ -142,18 +166,7 @@
 			}
 		}
 
-		// todo: random styles
-		//styles = https://tech.yandex.ru/maps/jsapi/doc/2.1/ref/reference/option.presetStorage-docpage/
-		function createPlacemark(coords)
-		{
-			// todo: random styles
-			return new ymaps.Placemark(coords, {
-				iconCaption: 'Кто это у нас тут?'
-			}, {
-				preset: 'islands#redIcon',
-				draggable: true
-			});
-		}
+
 
 		function matchRouts()
 		{
